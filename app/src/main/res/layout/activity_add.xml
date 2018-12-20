@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget0"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#F0E6FD"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/add_word"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_x="144dp"
+        android:layout_y="40dp"
+        android:hint=""
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/widget39"
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:layout_x="55dp"
+        android:layout_y="54dp"
+
+        android:text="账号：" />
+
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="69dp"
+        android:layout_y="114dp"
+        android:text="搜索" />
+
+    <Button
+        android:id="@+id/cancel_btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="221dp"
+        android:layout_y="114dp"
+        android:text="返回" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_x="0dp"
+        android:layout_y="213dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="216dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="446dp"
+        android:text="立即创建"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="429dp" />
+
+
+</AbsoluteLayout>
+
