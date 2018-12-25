@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.a15109.wakeup">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".add" />
+        <activity android:name=".ClockManager" />
+        <activity
+            android:name=".friendlist"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MyPlan" />
+        <activity android:name=".ClockEditing" />
+        <activity android:name=".ForgetLayoutActivity" />
+        <activity android:name=".LogintLayoutActivity" />
+        <activity android:name=".RegisterLayoutActivity" />
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.actions" -->
+        android:resource="@xml/network_security_config.xml" />
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/network_security_config" />
+
+
+        android:networkSecurityConfig="@xml/network_security_config"
+
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.a15109.wakeup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -52,14 +53,32 @@ public class MyPlan extends Activity {
             return false;
         }
     };*/
-
+    private Button button1,button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_plan);
 
 
+        button1 = (Button) findViewById(R.id.left2);
+        button2 = (Button) findViewById(R.id.right2);
+        button1.setOnClickListener(new View.OnClickListener() {
 
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MyPlan.this, ClockManager.class);
+                startActivity(intent);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MyPlan.this, friendlist.class);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -68,7 +87,7 @@ public class MyPlan extends Activity {
         ButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"创建计划",Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -140,28 +159,28 @@ public class MyPlan extends Activity {
         jihua_number[1]=1;
         jihua_year[1]=2018;
         jihua_month[1]=12;
-        jihua_day[1]=14;
+        jihua_day[1]=24;
         jihua_type[1]="个人计划";
         jihua_content[1]="概率论作业";
 
         jihua_number[2]=1;
         jihua_year[2]=2018;
         jihua_month[2]=12;
-        jihua_day[2]=11;
+        jihua_day[2]=26;
         jihua_type[2]="团队计划";
         jihua_content[2]="软件工程博客";
 
         jihua_number[3]=1;
         jihua_year[3]=2018;
         jihua_month[3]=12;
-        jihua_day[3]=16;
+        jihua_day[3]=28;
         jihua_type[3]="个人计划";
         jihua_content[3]="系统结构作业";
 
         jihua_number[4]=1;
-        jihua_year[4]=2018;
-        jihua_month[4]=12;
-        jihua_day[4]=16;
+        jihua_year[4]=2019;
+        jihua_month[4]=1;
+        jihua_day[4]=1;
         jihua_type[4]="个人计划";
         jihua_content[4]="交水电费";
 
@@ -180,9 +199,9 @@ public class MyPlan extends Activity {
         jihua_content[6]="Beta演示";
 
         jihua_number[7]=1;
-        jihua_year[7]=2018;
-        jihua_month[7]=12;
-        jihua_day[7]=14;
+        jihua_year[7]=2019;
+        jihua_month[7]=1;
+        jihua_day[7]=5;
         jihua_type[7]="团队计划";
         jihua_content[7]="开会";
 

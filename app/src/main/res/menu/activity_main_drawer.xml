@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:openDrawer="start">
+
+
+    <group
+        android:layout_width="wrap_content"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="首页" />
+        <item
+            android:id="@+id/nav_alarm"
+            android:icon="@drawable/ic_alarm_black_24dp"
+            android:title="闹钟" />
+        <item
+            android:id="@+id/nav_plan"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="计划" />
+    </group>
+
+    <item android:title="功能">
+        <menu>
+            <item
+                android:id="@+id/nav_add"
+                android:icon="@drawable/ic_add_black_24dp"
+                android:title="创建团队"
+                />
+
+        </menu>
+    </item>
+
+</menu>

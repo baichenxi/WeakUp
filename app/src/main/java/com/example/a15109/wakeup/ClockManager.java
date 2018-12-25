@@ -26,6 +26,7 @@ public class ClockManager extends Activity {
     Button btn_delete;
     RecyclerView mRecyclerView;
     PopupWindow mPopupWindow;
+    private Button button1;
     //private HomeAdapter mAdapter;   不要像这三句一样写出不来
     //LinearLayoutManager layout；
     //Adapter adapter;
@@ -36,7 +37,6 @@ public class ClockManager extends Activity {
     public static boolean k;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clockmanager_main);
 
@@ -68,6 +68,17 @@ public class ClockManager extends Activity {
         btn_delete = findViewById(R.id.btn_delete);
         button = findViewById(R.id.btn_add);
         setOnClickListener();
+
+
+        button1 = (Button) findViewById(R.id.btn_add);
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(ClockManager.this, ClockEditing.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
