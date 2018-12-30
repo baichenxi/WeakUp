@@ -30,7 +30,7 @@ import java.util.List;
 
 class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
     List<Item> list;//存放数据
-    boolean isVisible;
+    public boolean isVisible;
     //private OnItemClickListener mItemClickListener;
     int pstion;
     private Context mContext;
@@ -42,7 +42,8 @@ class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
         this.mItemClickListener  = onItemClickListener; }   */
 
     public HomeAdapter(List<Item> list) {
-        this.list = list;
+        this.list = new ArrayList<>();
+        if(list != null)    this.list = list;
         isVisible = false;
     }
 
@@ -62,12 +63,16 @@ class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(final HomeAdapter.MyViewHolder holder, final int position) {
 
+
+
+
         if(list.size()==0)  return;
         Item iSingle = list.get(position);
         holder.tv.setText(iSingle.getTime());
         holder.tv1.setText(iSingle.getText());      //因为是在Adapter内中定义的MyViewHolder类 故不需要初始化
         holder.swiClock.setChecked(true);
-
+        holder.v.setBackgroundColor(Color.WHITE);
+        /*
         if (iSingle.getType() == 1) {
             holder.v.setBackgroundColor(Color.GRAY);
         }
@@ -76,6 +81,7 @@ class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
             holder.v.setBackgroundColor(Color.WHITE);
         }
 
+        */
         if (isVisible == false)
             holder.btn_del.setVisibility(View.GONE);
         else
@@ -84,6 +90,7 @@ class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> {
         holder.btn_del.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pstion = holder.getAdapterPosition();
+
                 delete(holder.v);
 
                 //delete(position); //没final 会报错
