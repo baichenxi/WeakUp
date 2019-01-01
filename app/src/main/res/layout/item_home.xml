@@ -1,76 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content" android:id="@+id/id_item">
 
     <LinearLayout
         android:id="@+id/id_single"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="100dp"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_delete"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="X"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="7"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="164dp"
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="4"
                 android:fontFamily="sans-serif"
                 android:text="TextView"
                 android:textAlignment="viewStart"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="164dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:text="TextView"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <Switch
                 android:id="@+id/swi_Clock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="5"
                 android:checked="true" />
+
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
 
-            <Button
-                android:id="@+id/btn_delete"
-                style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:onClick="delete"
-                android:text="X"
-                android:textColor="#ff0000"
-                android:textSize="24sp"
-                android:visibility="gone" />
-        </LinearLayout>
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="1dp"
-        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

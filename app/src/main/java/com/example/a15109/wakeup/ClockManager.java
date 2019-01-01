@@ -1,10 +1,11 @@
 package com.example.a15109.wakeup;
 
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.*;
@@ -15,6 +16,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.widget.TextView;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.Color;
+import android.content.Context.*;
+
+import java.io.IOException;
+
+import android.widget.Toast;
+import android.widget.Button;
+
+import okhttp3.Call;
+import okhttp3.Response;
+
+
 
 public class ClockManager extends Activity {
 
@@ -26,7 +38,6 @@ public class ClockManager extends Activity {
     Button btn_delete;
     RecyclerView mRecyclerView;
     PopupWindow mPopupWindow;
-    private Button button1;
     //private HomeAdapter mAdapter;   不要像这三句一样写出不来
     //LinearLayoutManager layout；
     //Adapter adapter;
@@ -34,12 +45,42 @@ public class ClockManager extends Activity {
     LinearLayoutManager layout;
     Switch mSwitch;
     List<Item> listMain;
+    Context context;
     public static boolean k;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clockmanager_main);
 
+
+        /*
+        HttpUtil.getRequestToken("http://192.168.191.1:8080/ServletTest/GetClock?username=111&teamname=aa", new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ClockManager.this, "failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                final String s = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ClockManager.this, s, Toast.LENGTH_SHORT).show();
+                       // Log.v("1233333",s);
+                        //initData(s);
+                    }
+                });
+            }
+        });
+        */
 
         initData();
 
@@ -47,7 +88,11 @@ public class ClockManager extends Activity {
         mRecyclerView = findViewById(R.id.ry);
         mRecyclerView.setLayoutManager(layout);
         mAdapter = new HomeAdapter(listMain);
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(ClockManager.this, LinearLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mAdapter);
+
+
+
 
         /*
         mAdapter.setOnItemClickListener(new HomeAdapter.OnItemClickListener() {
@@ -69,17 +114,6 @@ public class ClockManager extends Activity {
         button = findViewById(R.id.btn_add);
         setOnClickListener();
 
-
-        button1 = (Button) findViewById(R.id.btn_add);
-        button1.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(ClockManager.this, ClockEditing.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
 
@@ -87,13 +121,47 @@ public class ClockManager extends Activity {
     protected void initData()           //导入数据库数据
     {
         listMain = new ArrayList<>();
-        String time[] = {"18:00","19:00","20:00","21:00","22:00"};
-        String text[] = {"开会，团队A","上课","洗澡","做作业，团队B","睡觉"};
-        int type[] = {1,1,0,0,0};
-        for (int i = 0;i<5; i++) {
+        String time[] = new String[100];
+        String text[] = new String[100];
+        int type[] = new int[100];
+
+
+        JK j = new JK();
+        j.getClock("");
+        String[] clock = j.clocks;
+        for(int i=0;i<clock.length;i++)
+        {
+            //Log.v(String.valueOf(i),clock[i].getClock());
+            time[i] = clock[i];
+            text[i] = " ";
+            type[i] = 0;
+        }
+
+        for(int i=0;i<clock.length;i++)
+        {
+            Item mItemSingle = new Item(time[i], " ", 0);
+            listMain.add(mItemSingle);
+        }
+
+
+/*
+         StoreClock.time[0] = "22:00";
+         StoreClock.text[0] = " ";
+         StoreClock.type[0] = 0;
+         StoreClock.len ++;
+         for(int i=0;i<StoreClock.len;i++)
+         {
+             time[i] = StoreClock.time[i];
+             text[i] = StoreClock.text[i];
+             type[i] = StoreClock.type[i];
+         }
+
+        for (int i = 0;i<StoreClock.len; i++) {
             Item mItemSingle = new Item(time[i], text[i], type[i]);
             listMain.add(mItemSingle);
         }
+*/
+
     }
     public void setOnClickListener() {
         OnClick onClick = new OnClick();
@@ -145,18 +213,26 @@ public class ClockManager extends Activity {
             for (position = 0; position < mAdapter.getItemCount(); position++) {
                 View view = mRecyclerView.getChildAt(position);
                 LinearLayout ly = (LinearLayout) view;    //获取布局中任意控件对象
-                del = (Button) ly.findViewById(R.id.btn_delete);
-                del.setVisibility(View.GONE);
+                if(ly!=null)
+                {
+                    del = ly.findViewById(R.id.btn_delete);
+                    del.setVisibility(View.GONE);
+                }
             }
             mAdapter.isVisible = false;
             k = false;
         } else {
             Button del;
+
             for (position = 0; position < mAdapter.getItemCount(); position++) {
+
                 View view = mRecyclerView.getChildAt(position);
                 LinearLayout ly = (LinearLayout) view;    //获取布局中任意控件对象
-                del = (Button) ly.findViewById(R.id.btn_delete);
-                del.setVisibility(View.VISIBLE);
+                if(ly!=null)
+                {
+                    del = ly.findViewById(R.id.btn_delete);
+                    del.setVisibility(View.VISIBLE);
+                }
 
             }
             mAdapter.isVisible = true;
@@ -212,10 +288,11 @@ public class ClockManager extends Activity {
     }
     public void add(View view) {
         //showPopupWindow();      //注释掉 写跳转函数
-        //Intent intent = new Intent(ClockManager.this,TestActivity.class);
-        // startActivity(intent);
-        //ClockManager.this.finish();
-
+        /*
+        Intent intent = new Intent(ClockManager.this,TestActivity.class);
+        startActivity(intent);
+        ClockManager.this.finish();
+        */
 
         return;
     }
@@ -223,7 +300,6 @@ public class ClockManager extends Activity {
 
 
 }
-
 
 
 
